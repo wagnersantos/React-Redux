@@ -1,16 +1,6 @@
-impoort {ADD_ARTICLE} from '../constatns/actions-types';
+import { combineReducers } from 'redux';
+import todos from './todos';
 
-const InitialState = {
-	articles: []
-}
-
-function RootReducer(state = InitialState, action){
-	if(action.type === ADD_ARTICLE){
-			return object.assign({},{
-				articles: state.articles.concat(action.payload);
-			});
-	}
-	return state;
-}
-
-export default RootReducer;
+export default combineReducers({
+	todos
+});
