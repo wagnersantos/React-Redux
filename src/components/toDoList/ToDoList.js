@@ -6,15 +6,16 @@ import {connect} from 'react-redux';
 class ToDoList extends Component {
 	constructor(props){
 		super(props);
-		console.log(props);
 		this.addNewToDo = this.addNewToDo.bind(this);
+		console.log(props)
 
 		this.state = {
 			newToDoText:  ''
 		}
 	}
 	addNewToDo(){
-
+		this.props.addToDo(this.state.newToDoText)
+		this.setState({newToDoText: ''});
 	}
 	render(){
 		return (
@@ -25,7 +26,7 @@ class ToDoList extends Component {
 					</ul>
 				</div>
 				<div>
-					<input type='text' onChange={(e) => this.SetState({newToDoText: e.target.value})} 
+					<input type='text' onChange={(e) => this.setState({newToDoText: e.target.value})} 
 						value={this.state.newToDoText} />
 					<button onClick={this.addNewToDo}> Novo todo</button>
 				</div>
@@ -34,6 +35,10 @@ class ToDoList extends Component {
 	}
 }
 
+const mapStateToProps = state => ({
+	todos: state.todos
+});
+
 const mapDispatchToprops = dispacth => bindActionCreators(todosActions,dispacth);
 
-export default connect(null, mapDispatchToprops)(ToDoList);
+export default connect(mapStateToProps, mapDispatchToprops)(ToDoList);
