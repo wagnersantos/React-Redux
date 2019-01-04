@@ -22,7 +22,9 @@ class ToDoList extends Component {
 			<div>
 				<div>
 					<ul>
-						<li>Item do todo</li>
+						{
+							this.props.todos.map(todo => <li key={todo.id}>{todo.text}</li>)
+						}
 					</ul>
 				</div>
 				<div>
